@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sombra & Fuego — Café de origen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bean: "#150C0C",
+              cream: "#EFD9BE",
+              bronze: "#D39858",
+              bordeaux: "#491D24",
+            },
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+              serif: ['"Playfair Display"', "ui-serif", "Georgia", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --color-bean: #150c0c;
+        --color-cream: #efd9be;
+        --color-bronze: #d39858;
+        --color-bordeaux: #491d24;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        background-color: var(--color-bean);
+        color: var(--color-cream);
+      }
+
+      .logo-mark {
+        display: block;
+        width: 45px;
+        height: 32px;
+        background-color: currentColor;
+        -webkit-mask: url("public/assets/logos/logo-sombra-y-fuego.svg") center / contain no-repeat;
+        mask: url("public/assets/logos/logo-sombra-y-fuego.svg") center / contain no-repeat;
+      }
+
+      @media (max-width: 1023px) {
+        .logo-mark {
+          width: 39px;
+          height: 28px;
+        }
+      }
+
+      .nav-link {
+        position: relative;
+        font-family: Inter, sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #efd9be;
+        transition: color 0.2s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -4px;
+        height: 2px;
+        background: #efd9be;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.2s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link:focus-visible::after,
+      .group:hover > .nav-link::after {
+        transform: scaleX(1);
+      }
+
+      .nav-link.is-active {
+        font-weight: 700;
+      }
+
+      .submenu-item {
+        display: block;
+        padding: 0.55rem 0.85rem;
+        font-family: Inter, sans-serif;
+        font-size: 0.875rem;
+        color: #efd9be;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .submenu-item:hover,
+      .submenu-item:focus-visible {
+        background-color: #1a1a1a;
+        transform: translateX(4px);
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        border-radius: 9999px;
+        border: 1px solid #efd9be;
+        background: #150c0c;
+        color: #efd9be;
+        font-family: Inter, sans-serif;
+        font-weight: 500;
+        font-size: 0.95rem;
+        line-height: 1;
+        padding: 0.65rem 1.5rem;
+        box-shadow: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .btn-primary svg {
+        transition: transform 0.2s ease;
+      }
+
+      @media (max-width: 1023px) {
+        .btn-primary {
+          font-size: 0.85rem;
+          padding: 0.5rem 1.1rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .btn-primary:hover {
+          background: #efd9be;
+          color: #150c0c;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(211, 152, 88, 0.25);
+        }
+
+        .btn-primary:hover svg {
+          transform: translate(2px, -2px);
+        }
+
+        .btn-primary:active {
+          transform: translateY(0);
+        }
+      }
+
+      .btn-primary:focus-visible,
+      .nav-link:focus-visible,
+      .submenu-item:focus-visible,
+      .footer-legal a:focus-visible,
+      #menu-toggle:focus-visible {
+        outline: 2px solid #d39858;
+        outline-offset: 2px;
+      }
+
+      .ticket {
+        position: relative;
+        overflow: hidden;
+        background: #d39858;
+        color: #150c0c;
+        border-radius: 16px;
+      }
+
+      .ticket-notch {
+        position: absolute;
+        z-index: 3;
+        width: 28px;
+        height: 28px;
+        border-radius: 9999px;
+        background: #150c0c;
+        pointer-events: none;
+      }
+
+      .ticket-notch--left {
+        left: -14px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .ticket-notch--right {
+        right: -14px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .ticket-notch--top-left,
+      .ticket-notch--top-right {
+        top: auto;
+      }
+
+      @media (max-width: 767px) {
+        .ticket-notch--left,
+        .ticket-notch--right {
+          top: 72px;
+          transform: none;
+        }
+      }
+
+      .cell-divider {
+        border-color: rgb(21 12 12 / 0.2);
+      }
+    </style>
+  </head>
+  <!-- ========================================== -->
+<!-- 1. PRELOADER CINEMÁTICO (Cortina de Entrada) -->
+<!-- ========================================== -->
+<div id="preloader" class="fixed inset-0 z-[100] bg-[#150C0C] overflow-hidden flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]">
+  
+  <!-- Contenedor Central de la Pila de Imágenes -->
+  <div class="relative w-[320px] h-[420px] md:w-[450px] md:h-[580px] flex items-center justify-center pointer-events-none">
+    
+    <!-- Pila de 8 Imágenes Apiladas -->
+    <img src="public/assets/images/preloader/img1.jpg" alt="Sombra & Fuego 1" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-1">
+    <img src="public/assets/images/preloader/img2.jpg" alt="Sombra & Fuego 2" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-2">
+    <img src="public/assets/images/preloader/img3.jpg" alt="Sombra & Fuego 3" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-3">
+    <img src="public/assets/images/preloader/img4.jpg" alt="Sombra & Fuego 4" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-4">
+    <img src="public/assets/images/preloader/img5.jpg" alt="Sombra & Fuego 5" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-5">
+    <img src="public/assets/images/preloader/img6.jpg" alt="Sombra & Fuego 6" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-6">
+    <img src="public/assets/images/preloader/img7.jpg" alt="Sombra & Fuego 7" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-7">
+    <img src="public/assets/images/preloader/img8.jpg" alt="Sombra & Fuego 8" class="preloader-img absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 animate-preloader-step-8">
+
+  </div>
+</div>
+
+<!-- Keyframes y Animaciones del Preloader -->
+<style>
+  /* Prevenir el scroll de la página mientras carga */
+  body.preloader-active {
+    overflow: hidden !important;
+  }
+
+  /* Keyframe para la aparición veloz de cada imagen */
+  @keyframes preloaderFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Secuencia Escalonada (Staggered Delays de 0.2s) */
+  .animate-preloader-step-1 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.1s; }
+  .animate-preloader-step-2 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s; }
+  .animate-preloader-step-3 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s; }
+  .animate-preloader-step-4 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.7s; }
+  .animate-preloader-step-5 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.9s; }
+  .animate-preloader-step-6 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.1s; }
+  .animate-preloader-step-7 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.3s; }
+  .animate-preloader-step-8 { animation: preloaderFadeIn 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.5s; }
+
+  /* Clase JS de salida vertical (Glide Up) */
+  #preloader.preloader-hidden {
+    transform: translateY(-100%);
+  }
+</style>
+
+<!-- Script de Lógica e Interacción -->
+<script>
+  // 1. Bloquear scroll al inicializar
+  document.body.classList.add('preloader-active');
+
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const heroSection = document.getElementById('hero');
+
+    // Tiempo total mínimo para completar la secuencia visual de las 8 fotos (1.5s animación + 0.4s pausa)
+    const minPreloaderDuration = 1900; 
+
+    setTimeout(() => {
+      // 2. Desplazar el preloader hacia arriba
+      if (preloader) {
+        preloader.classList.add('preloader-hidden');
+      }
+
+      // 3. Reactivar el scroll de la web
+      document.body.classList.remove('preloader-active');
+
+      // 4. Efecto Parallax/Glide de entrada en la sección Hero
+      if (heroSection) {
+        heroSection.classList.add('transition-transform', 'duration-1000', 'ease-out');
+        heroSection.style.transform = 'translateY(0)';
+      }
+    }, minPreloaderDuration);
+  });
+</script>
+
+  <body class="bg-bean text-cream antialiased min-h-screen flex flex-col">
+    <header class="sticky top-0 z-[60] bg-[#150C0C] border-b border-[#D39858]/20 transition-all duration-300">
+      <!-- Layout Desktop (>= 1024px) -->
+      <div class="hidden lg:flex justify-between items-center px-8 py-4 max-w-[1536px] mx-auto">
+        
+        <!-- Izquierda: Logo Imagotipo Uno -->
+        <a href="index.html" class="shrink-0 flex items-center transition-opacity hover:opacity-90" aria-label="Sombra y Fuego — Inicio">
+          <img 
+            src="public/assets/logos/Logo-Imagotipo-Header.svg" 
+            alt="Sombra & Fuego — Café de Origen" 
+            class="h-10 w-auto object-contain"
+          />
+        </a>
+    
+        <!-- Centro: Menú de Navegación Principal -->
+        <nav aria-label="Navegación principal" class="flex space-x-8 items-center">
+          <a href="index.html" class="nav-link is-active">Inicio</a>
+          
+          <!-- Dropdown "Cómo prepararlo" -->
+          <div class="relative group">
+            <a href="index.html#metodos-preparacion" class="nav-link inline-flex items-center gap-1.5 py-1">
+              <span>Cómo prepararlo</span>
+              <svg class="w-3.5 h-3.5 text-[#D39858] transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </a>
+            
+            <!-- Contenedor desplegable -->
+            <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition-all duration-200 absolute top-full left-0 mt-2 min-w-[200px] bg-[#150C0C] border border-[#D39858]/30 rounded-xl p-2 shadow-2xl z-50">
+              <a class="submenu-item block px-4 py-2 text.sm text-[#EFD9BE] hover:bg-[#D39858]/10 hover:text-[#D39858] rounded-lg transition-colors" href="prensa-francesa.html">Prensa Francesa</a>
+              <a class="submenu-item block px-4 py-2 text-sm text-[#EFD9BE] hover:bg-[#D39858]/10 hover:text-[#D39858] rounded-lg transition-colors" href="v60.html">V60</a>
+              <a class="submenu-item block px-4 py-2 text-sm text-[#EFD9BE] hover:bg-[#D39858]/10 hover:text-[#D39858] rounded-lg transition-colors" href="espresso.html">Espresso</a>
+            </div>
+          </div>
+    
+          <a href="blog-landing.html" class="nav-link">Blog</a>
+        </nav>
+    
+        <!-- Derecha: Botón Call To Action -->
+        <a href="index.html#preventa" class="btn-primary">
+          <span>Comprar Producto</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    
+      <!-- Layout Mobile / Tablet (< 1024px) -->
+      <div class="flex lg:hidden justify-between items-center px-5 py-3.5">
+        <!-- Izquierda: Logo Imagotipo Uno en escala compacta -->
+        <a href="index.html" class="shrink-0 flex items-center" aria-label="Sombra y Fuego — Inicio">
+          <img 
+            src="public/assets/logos/Logo-Imagotipo-Header.svg" 
+            alt="Sombra & Fuego" 
+            class="h-8 w-auto object-contain"
+          />
+        </a>
+        
+        <!-- Derecha: Botón de Compra Rápido + Menú Hamburguesa -->
+        <div class="flex items-center gap-3">
+          <a href="index.html#preventa" class="btn-primary text-xs py-2 px-3.5">
+            <span>Comprar</span>
+          </a>
+          
+          <button
+            id="menu-toggle"
+            type="button"
+            class="text-[#EFD9BE] p-2 hover:bg-[#D39858]/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#D39858]"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg id="icon-open" width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <path d="M4 8H24" stroke="#EFD9BE" stroke-width="2" stroke-linecap="round" />
+              <path d="M4 14H24" stroke="#EFD9BE" stroke-width="2" stroke-linecap="round" />
+              <path d="M4 20H24" stroke="#EFD9BE" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <path d="M7 7L21 21M21 7L7 21" stroke="#EFD9BE" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Menú Móvil Fijo a Pantalla Completa -->
+    <div
+      id="mobile-menu"
+      class="hidden fixed inset-0 z-50 bg-[#150C0C] px-6 pt-28 pb-10 overflow-y-auto lg:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menú de navegación"
+    >
+      <nav class="flex flex-col gap-6 max-w-md mx-auto">
+        <a href="index.html" class="mobile-link font-sans font-bold text-2xl text-[#EFD9BE]">Inicio</a>
+        <a href="index.html#preventa" class="mobile-link font-sans font-bold text-2xl text-[#EFD9BE]">El Producto</a>
+        
+        <!-- Desglose de Métodos en Móvil -->
+        <div class="border-t border-[#D39858]/20 pt-4 mt-2">
+          <span class="font-sans font-bold text-2xl text-[#EFD9BE] block mb-3">Cómo prepararlo</span>
+          <div class="flex flex-col gap-3 pl-4 border-l-2 border-[#D39858]/30">
+            <a href="prensa-francesa.html" class="mobile-link font-sans text-lg text-[#D39858]">Prensa Francesa</a>
+            <a href="v60.html" class="mobile-link font-sans text-lg text-[#D39858]">V60</a>
+            <a href="espresso.html" class="mobile-link font-sans text-lg text-[#D39858]">Espresso</a>
+          </div>
+        </div>
+    
+        <a href="blog-landing.html" class="mobile-link font-sans font-bold text-2xl text-[#EFD9BE] border-t border-[#D39858]/20 pt-4">Blog</a>
+      </nav>
+    </div>
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método de Preparación - Café Sombra y Fuego</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Playfair Display & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coffee: '#150C0C',
+            cream: '#EFD9BE',
+            bronze: '#D39858',
+            bordeaux: '#491D24',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos personalizados para recortar notch lateral del ticket serrado */
+    .ticket-notch-left {
+      position: absolute;
+      left: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 9999px;
+      background-color: #150C0C;
+    }
+    .ticket-notch-right {
+      position: absolute;
+      right: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 9999px;
+      background-color: #150C0C;
+    }
+  </style>
+</head>
+<body class="bg-[#150C0C] text-[#EFD9BE] font-sans antialiased selection:bg-[#D39858] selection:text-[#150C0C]">
+
+  <!-- Aqui inicia la sección dinámica -->
+<!-- CONTENEDOR PRINCIPAL - PRENSA FRANCESA -->
+<main id="app-root" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <!-- BLOQUE 1: HERO DEL MÉTODO + CTA 1 -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-12 border-b border-[#D39858]/20 relative">
+    <div class="lg:col-span-7 space-y-6">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#D39858]/10 border border-[#D39858]/30 text-xs font-semibold uppercase tracking-widest text-[#D39858]">
+        EXTRACCIÓN POR INMERSIÓN TOTAL
+      </span>
+      
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium text-[#EFD9BE] leading-tight">
+        Prensa Francesa
+      </h1>
+
+      <p class="text-base sm:text-lg text-[#EFD9BE]/80 leading-relaxed max-w-2xl">
+        Cuerpo denso y sedoso con profundos matices a cacao amargo y avellanas.
+      </p>
+
+      <div class="pt-4 flex flex-wrap items-center gap-4">
+        <a href="#comprar" class="px-8 py-4 rounded-full bg-[#D39858] text-[#150C0C] font-semibold text-sm hover:bg-[#EFD9BE] transition-all duration-300 shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2">
+          Asegurar mi Bolsa de Lote 01 ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- HERO VISUAL CON BADGE CIRCULAR FLOTANTE -->
+    <div class="lg:col-span-5 relative flex justify-center items-center">
+      <div class="absolute -top-4 -right-2 sm:right-4 z-20 w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-[#D39858]/40 bg-[#150C0C]/90 backdrop-blur-md p-2 flex items-center justify-center animate-spin-slow">
+        <img src="public/assets/images/cms/metodo-hero.png" alt="Sello de Garantía Artesanal" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://via.placeholder.com/100/150C0C/D39858?text=SELLO+ARTESANAL';">
+      </div>
+
+      <div class="w-full h-[360px] sm:h-[420px] rounded-2xl overflow-hidden border border-[#D39858]/20 relative group bg-[#150C0C]">
+        <img src="public/assets/images/cms/imagen-prensa.png" alt="Prensa Francesa Método" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C] via-transparent to-transparent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 2: FICHA TÉCNICA (TICKET SERRADO) -->
+  <section class="py-12">
+    <div class="relative bg-[#D39858] text-[#150C0C] rounded-2xl p-6 sm:p-10 shadow-2xl overflow-hidden my-6">
+      <div class="ticket-notch-left"></div>
+      <div class="ticket-notch-right"></div>
+
+      <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-[#150C0C]/20 pb-6 mb-8 gap-4">
+        <div>
+          <span class="text-xs uppercase font-bold tracking-widest text-[#150C0C]/70 block mb-1">PARÁMETROS DE PREPARACIÓN</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold">Ficha Técnica de Extracción</h2>
+        </div>
+        <div class="text-xs font-semibold px-4 py-2 rounded-full border border-[#150C0C]/30 bg-[#150C0C]/10 w-fit">
+          Ticket de Receta Nº <span>SF-M01</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="border-r border-[#150C0C]/15 pr-4 last:border-0">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#150C0C]/60 block mb-1">Molienda</span>
+          <p class="font-serif text-lg sm:text-2xl font-bold text-[#150C0C]">Gruesa</p>
+        </div>
+        <div class="border-r border-[#150C0C]/15 pr-4 last:border-0">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#150C0C]/60 block mb-1">Ratio Café / Agua</span>
+          <p class="font-serif text-lg sm:text-2xl font-bold text-[#150C0C]">1:12 (25g / 300ml)</p>
+        </div>
+        <div class="border-r border-[#150C0C]/15 pr-4 last:border-0">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#150C0C]/60 block mb-1">Tiempo Total</span>
+          <p class="font-serif text-lg sm:text-2xl font-bold text-[#150C0C]">4:00 Minutos</p>
+        </div>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#150C0C]/60 block mb-1">Temperatura</span>
+          <p class="font-serif text-lg sm:text-2xl font-bold text-[#150C0C]">94°C</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 3: PASOS DE PREPARACIÓN -->
+  <section class="py-12 border-b border-[#D39858]/20">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#D39858] block mb-2">PASO A PASO</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#EFD9BE]">El Ritual de Preparación</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
+      
+      <!-- UTENSILIO STICKY -->
+      <div class="lg:col-span-5 lg:sticky lg:top-28 transition-all duration-300">
+        <div class="bg-[#150C0C] border border-[#D39858]/20 rounded-2xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group min-h-[420px] shadow-2xl">
+          <div class="absolute inset-0 bg-gradient-to-b from-[#D39858]/5 to-transparent pointer-events-none"></div>
+          
+          <img src="public/assets/images/cms/utensilio-prensa.png" alt="Utensilio Prensa Francesa" class="w-64 h-64 object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_20px_30px_rgba(211,152,88,0.15)]" onerror="this.onerror=null; this.src='public/assets/images/blog/blog-prensa.jpg';">
+
+          <div class="mt-6 z-10">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">EQUIPAMIENTO</span>
+            <p class="font-serif text-xl font-medium text-[#EFD9BE]">Prensa Francesa</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LISTADO DE PASOS -->
+      <div class="lg:col-span-7 space-y-8">
+        
+        <!-- PASO 1 -->
+        <div class="bg-[#150C0C] border border-[#D39858]/20 rounded-2xl p-6 sm:p-8 relative group hover:border-[#D39858]/60 transition-colors">
+          <div class="flex items-start gap-5">
+            <span class="font-serif text-3xl font-bold text-[#D39858] shrink-0">01</span>
+            <div>
+              <h3 class="font-serif text-xl font-medium text-[#EFD9BE] mb-2">Precalentamiento & Carga</h3>
+              <p class="text-sm sm:text-base text-[#EFD9BE]/80 leading-relaxed">
+                Pasa agua caliente por la prensa y la jarra de cristal. Agrega 25g de café en molienda gruesa.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 2 -->
+        <div class="bg-[#150C0C] border border-[#D39858]/20 rounded-2xl p-6 sm:p-8 relative group hover:border-[#D39858]/60 transition-colors">
+          <div class="flex items-start gap-5">
+            <span class="font-serif text-3xl font-bold text-[#D39858] shrink-0">02</span>
+            <div>
+              <h3 class="font-serif text-xl font-medium text-[#EFD9BE] mb-2">Infusión Inicial</h3>
+              <p class="text-sm sm:text-base text-[#EFD9BE]/80 leading-relaxed">
+                Vierte 300ml de agua hirviendo (94°C) asegurando que todo el café quede sumergido. Coloca la tapa sin bajar el émbolo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 3 -->
+        <div class="bg-[#150C0C] border border-[#D39858]/20 rounded-2xl p-6 sm:p-8 relative group hover:border-[#D39858]/60 transition-colors">
+          <div class="flex items-start gap-5">
+            <span class="font-serif text-3xl font-bold text-[#D39858] shrink-0">03</span>
+            <div>
+              <h3 class="font-serif text-xl font-medium text-[#EFD9BE] mb-2">Ruptura de Costra</h3>
+              <p class="text-sm sm:text-base text-[#EFD9BE]/80 leading-relaxed">
+                Al minuto 4:00, remueve la capa superior suavemente con una cuchara y retira la espuma flotante.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 4 -->
+        <div class="bg-[#150C0C] border border-[#D39858]/20 rounded-2xl p-6 sm:p-8 relative group hover:border-[#D39858]/60 transition-colors">
+          <div class="flex items-start gap-5">
+            <span class="font-serif text-3xl font-bold text-[#D39858] shrink-0">04</span>
+            <div>
+              <h3 class="font-serif text-xl font-medium text-[#EFD9BE] mb-2">Prensado Suave</h3>
+              <p class="text-sm sm:text-base text-[#EFD9BE]/80 leading-relaxed">
+                Baja el filtro con presión constante y sin forzarlo. Sirve inmediatamente todo el líquido.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOQUE 4: CONSEJO DE CATA -->
+  <section class="py-16 my-8">
+    <div class="bg-[#491D24] border border-[#D39858]/40 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
+      <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#D39858]">CONSEJO DE CATA & AGUA</span>
+        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-[#EFD9BE] leading-snug">
+          "Rompe la costra a los 4 minutos e infusiona sin prisa para conservar la claridad táctil sin sedimentos."
+        </h2>
+        <div class="pt-4">
+          <a href="#comprar" class="px-8 py-4 rounded-full bg-[#150C0C] border border-[#EFD9BE] text-[#EFD9BE] hover:bg-[#EFD9BE] hover:text-[#150C0C] transition-all duration-300 font-semibold text-sm inline-flex items-center gap-2">
+            Comprar Lote 01 para este método ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 5: CROSS-SELLING DE MÉTODOS -->
+  <section class="py-12 border-b border-[#D39858]/20">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+      <div>
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#D39858] block mb-2">MÁS RITUALES</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#EFD9BE]">Explora otros rituales de extracción</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      
+      <!-- V60 -->
+      <article class="bg-[#150C0C] border border-[#D39858]/20 rounded-2xl p-6 flex flex-col justify-between hover:border-[#D39858] transition-all group">
+        <div>
+          <div class="w-full h-48 rounded-xl overflow-hidden mb-6 bg-[#150C0C]">
+            <img src="public/assets/images/cms/imagen-v60.png" alt="V60 Vertidos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">FILTRADO PERCOLACIÓN</span>
+          <h3 class="font-serif text-xl font-bold text-[#EFD9BE] mb-2">V60 / Vertidos</h3>
+          <p class="text-sm text-[#EFD9BE]/70 mb-6">Notas brillantes de frutos rojos silvestres con una acidez limpia y equilibrada.</p>
+        </div>
+        <a href="v60.html" class="w-full py-3 text-center rounded-full border border-[#D39858]/40 text-[#EFD9BE] text-xs font-semibold hover:bg-[#D39858] hover:text-[#150C0C] transition-all">
+          Ver Guía de V60 ↗
+        </a>
+      </article>
+
+      <!-- ESPRESSO -->
+      <article class="bg-[#150C0C] border border-[#D39858]/20 rounded-2xl p-6 flex flex-col justify-between hover:border-[#D39858] transition-all group">
+        <div>
+          <div class="w-full h-48 rounded-xl overflow-hidden mb-6 bg-[#150C0C]">
+            <img src="public/assets/images/cms/imagen-espresso.png" alt="Espresso" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">PRESIÓN & CREMA</span>
+          <h3 class="font-serif text-xl font-bold text-[#EFD9BE] mb-2">Espresso</h3>
+          <p class="text-sm text-[#EFD9BE]/70 mb-6">Intensidad máxima, cuerpo denso y una capa de crema persistente.</p>
+        </div>
+        <a href="espresso.html" class="w-full py-3 text-center rounded-full border border-[#D39858]/40 text-[#EFD9BE] text-xs font-semibold hover:bg-[#D39858] hover:text-[#150C0C] transition-all">
+          Ver Guía de Espresso ↗
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- BLOQUE 6: CIERRE & CTA 3 -->
+  <section id="comprar" class="py-20 text-center">
+    <div class="max-w-2xl mx-auto space-y-6">
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#EFD9BE] leading-tight">
+        Lleva la experiencia de la barra de especialidad a tu mesa.
+      </h2>
+      <p class="text-base text-[#EFD9BE]/80">
+        Grano fresco tostado semanalmente en pequeñas tandas numeradas a mano.
+      </p>
+      <div class="pt-6">
+        <a href="#" class="px-10 py-5 rounded-full bg-[#D39858] text-[#150C0C] font-semibold text-base hover:bg-[#EFD9BE] transition-all duration-300 shadow-xl inline-flex items-center gap-2 transform hover:-translate-y-1">
+          Comprar Café Lote 01 Ahora ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+  <!-- Aqui termina la sección dinámica -->
+
+    <footer class="site-footer bg-bean px-5 md:px-8 lg:px-10 pb-8 pt-6">
+      <div class="ticket">
+        <span class="ticket-notch ticket-notch--left" aria-hidden="true"></span>
+        <span class="ticket-notch ticket-notch--right" aria-hidden="true"></span>
+
+        <div class="flex flex-col md:flex-row">
+          <div
+            class="flex items-center justify-center w-full md:w-[120px] shrink-0 py-6 md:py-0 border-b border-dashed md:border-b-0 md:border-r border-[#150C0C]/40"
+          >
+            <span class="logo-mark text-bean" style="width: 64px; height: 45px"></span>
+          </div>
+
+          <div class="flex-1 p-6 md:p-6 lg:p-8 min-w-0">
+            <div class="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-0">
+              <div class="flex flex-col gap-4 lg:contents">
+                <div class="lg:pr-6 lg:border-r cell-divider">
+                  <p class="font-sans text-[0.75rem] font-normal opacity-70">Estado</p>
+                  <p class="font-sans text-[1.125rem] font-bold">Lote 01 / 500</p>
+                </div>
+                <div class="lg:px-6 lg:border-r cell-divider">
+                  <p class="font-sans text-[0.75rem] font-normal opacity-70">Origen</p>
+                  <p class="font-sans text-[1.125rem] font-bold">Sierra Nevada, COL</p>
+                </div>
+              </div>
+              <div class="lg:pl-6">
+                <p class="font-sans text-[0.875rem] font-normal leading-[1.4]">
+                  Edición limitada de tueste artesanal. Proceso anaeróbico de origen único numerado a mano.
+                </p>
+              </div>
+            </div>
+
+            <p class="mt-6 lg:mt-8 font-serif font-bold tracking-tight leading-none text-bean">
+              <span class="block md:hidden text-4xl">SOMBRA<br />&amp; FUEGO</span>
+              <span class="hidden md:block lg:hidden text-5xl whitespace-nowrap">SOMBRA &amp; FUEGO</span>
+              <span class="hidden lg:block text-7xl xl:text-8xl whitespace-nowrap">SOMBRA &amp; FUEGO</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal mt-4 flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center">
+        <p class="font-sans text-[0.75rem] font-normal text-cream/60">
+          © 2026 Sombra &amp; Fuego. Todos los derechos reservados.
+        </p>
+        <p class="font-sans text-[0.75rem] font-normal text-cream/60">
+          <a href="#terminos" class="hover:text-cream transition-colors duration-200">Términos</a>
+          <span class="mx-1">-</span>
+          <a href="#privacidad" class="hover:text-cream transition-colors duration-200">Privacidad</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const toggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("mobile-menu");
+        const iconOpen = document.getElementById("icon-open");
+        const iconClose = document.getElementById("icon-close");
+
+        function setOpen(open) {
+          menu.classList.toggle("hidden", !open);
+          iconOpen.classList.toggle("hidden", open);
+          iconClose.classList.toggle("hidden", !open);
+          document.body.classList.toggle("overflow-hidden", open);
+          toggle.setAttribute("aria-expanded", String(open));
+          toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+        }
+
+        toggle.addEventListener("click", function () {
+          setOpen(menu.classList.contains("hidden"));
+        });
+
+        menu.querySelectorAll(".mobile-link").forEach(function (link) {
+          link.addEventListener("click", function () {
+            setOpen(false);
+          });
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") setOpen(false);
+        });
+      })();
+    </script>
+  </body>
+</html>
