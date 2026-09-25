@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: main # O la rama principal de tu repositorio de GitHub
+
+media_folder: "uploads" # Dónde se guardan las imágenes cargadas por el usuario
+public_folder: "/uploads"
+
+collections:
+  - name: "blog"
+    label: "Artículos de la Bitácora"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha de publicación", name: "date", widget: "datetime" }
+      - { label: "Categoría", name: "category", widget: "select", options: ["Botánica & Origen", "Métodos de Extracción", "Cultura & Tueste"] }
+      - { label: "Autor", name: "author", widget: "string", default: "Don Mateo Rodríguez" }
+      - { label: "Tiempo de lectura", name: "read_time", widget: "string", default: "5 min" }
+      - { label: "Imagen Destacada", name: "featured_image", widget: "image" }
+      - { label: "Resumen / Lead", name: "excerpt", widget: "text" }
+      - { label: "Cuerpo del Artículo", name: "body", widget: "markdown" }
