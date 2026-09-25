@@ -1,6 +1,6 @@
 ---
 title: "El arte del tueste medio: Desarrollando azúcares sin perder la acidez"
-date: 2026-10-12T12:21:00.000-05:00
+date: 2026-09-12T12:21:00.000-05:00
 category: Cultura & Tueste
 author: Camila Morales
 read_time: 4 min
