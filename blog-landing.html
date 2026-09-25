@@ -864,5 +864,72 @@
         });
       })();
     </script>
+    <!-- Librería para procesar los archivos Markdown de Decap -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+  async function cargarArticulosCMS() {
+    const contenedor = document.getElementById('grid-articulos'); // Asegúrate que tu contenedor de tarjetas tenga este ID
+    if (!contenedor) return;
+
+    try {
+      // Petición a la API de GitHub para listar los archivos de la carpeta content/blog
+      const response = await fetch('https://api.github.com/repos/CamiloFranco03/Blog-Sombra-y-Fuego/contents/content/blog');
+      const archivos = await response.json();
+
+      if (!Array.isArray(archivos)) return;
+
+      // Limpiamos las tarjetas estáticas/dummy
+      contenedor.innerHTML = '';
+
+      for (const archivo of archivos) {
+        if (archivo.name.endsWith('.md')) {
+          const resContenido = await fetch(archivo.download_url);
+          const textoMd = await resContenido.text();
+
+          // Extraer Frontmatter (metadatos del YAML de Decap)
+          const partes = textoMd.split('---');
+          if (partes.length >= 3) {
+            const yamlRaw = partes[1];
+            
+            // Parsear variables básicas del YAML
+            const titleMatch = yamlRaw.match(/title:\s*"(.*?)"|title:\s*(.*)/);
+            const categoryMatch = yamlRaw.match(/category:\s*"(.*?)"|category:\s*(.*)/);
+            const imageMatch = yamlRaw.match(/featured_image:\s*"(.*?)"|featured_image:\s*(.*)/);
+            const excerptMatch = yamlRaw.match(/excerpt:\s*"(.*?)"|excerpt:\s*(.*)/);
+
+            const title = titleMatch ? (titleMatch[1] || titleMatch[2]) : 'Sin título';
+            const category = categoryMatch ? (categoryMatch[1] || categoryMatch[2]) : 'Bitácora';
+            const image = imageMatch ? (imageMatch[1] || imageMatch[2]) : '';
+            const excerpt = excerptMatch ? (excerptMatch[1] || excerptMatch[2]) : '';
+            const slug = archivo.name.replace('.md', '');
+
+            // Plantilla HTML de la tarjeta
+            const tarjetaHTML = `
+              <article class="bg-[#181513] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-700/30 transition-all group">
+                <a href="articulo.html?slug=${slug}" class="block overflow-hidden h-52">
+                  <img src="${image}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </a>
+                <div class="p-6">
+                  <span class="text-xs uppercase tracking-widest text-amber-500 font-medium">${category}</span>
+                  <h3 class="text-xl font-serif text-stone-200 mt-2 mb-3 group-hover:text-amber-400 transition-colors">
+                    <a href="articulo.html?slug=${slug}">${title}</a>
+                  </h3>
+                  <p class="text-stone-400 text-sm line-clamp-2">${excerpt}</p>
+                </div>
+              </article>
+            `;
+
+            contenedor.innerHTML += tarjetaHTML;
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error cargando los artículos:', error);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', cargarArticulosCMS);
+</script>
   </body>
 </html>
