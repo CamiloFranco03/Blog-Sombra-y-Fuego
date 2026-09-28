@@ -1,6 +1,7 @@
 backend:
-  name: git-gateway
-  branch: main # O la rama principal de tu repositorio de GitHub
+  name: github
+  repo: CamiloFranco03/Blog-Sombra-y-Fuego
+  branch: main
 
 media_folder: "uploads" # Dónde se guardan las imágenes cargadas por el usuario
 public_folder: "/uploads"
