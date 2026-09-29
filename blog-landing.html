@@ -534,82 +534,138 @@
       })();
     </script>
   </body>
-  <script>
-    // 1. Reemplaza esto con la URL de tu API de Hygraph (Project Settings > API Access)
+<script>
     const HYGRAPH_ENDPOINT = 'https://us-west-2.cdn.hygraph.com/content/cmu4momi703vv06uzgrpbqxkf/master';
     const blogGrid = document.getElementById('blog-grid');
-  
-    // 2. Esta es la consulta GraphQL que pide los datos al CMS
+    const searchInput = document.getElementById('blog-search-input');
+    const filterButtons = document.querySelectorAll('#blog-category-filters .filter-btn');
+
+    let allPosts = [];
+    let currentCategory = 'all';
+    let currentSearchTerm = '';
+
     const query = `
     {
-      articulo {
+      articulos {
         id
         titulo
         categoria
         tiempoDeLectura
         parrafoLead
-        cuerpoDelTexto
-        nombreDelAutor
-        biografiaDelAutor
-        fotoDelAutor {
-        url
-      }
         imagenPrincipal {
-        url
-      }
-      pieDeFoto
+          url
+        }
       }
     }
   `;
-  
-  async function fetchPosts() {
-    try {
-      const response = await fetch(HYGRAPH_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })
-      });
-      
-      const result = await response.json();
-      // Ojo aquí: ahora usa 'articulos' en lugar de 'posts'
-      const posts = result.data.articulos; 
-      
-      renderPosts(posts);
-    } catch (error) {
-      console.error("Error conectando con Hygraph:", error);
+
+    async function fetchPosts() {
+      try {
+        const response = await fetch(HYGRAPH_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query })
+        });
+        
+        const result = await response.json();
+
+        if (result.errors) {
+          console.error("Error devuelto por Hygraph:", result.errors);
+          return;
+        }
+
+        allPosts = result.data?.articulos || []; 
+        filterAndRender();
+      } catch (error) {
+        console.error("Error conectando con Hygraph:", error);
+      }
     }
-  }
-  
+
     function renderPosts(posts) {
-    blogGrid.innerHTML = ''; // Aseguramos que el grid esté vacío
-    
-    // Recorremos los artículos que devuelve Hygraph
-    posts.forEach(post => {
-      const article = `
-        <article class="blog-card bg-[#1A1010] border border-bronze/20 rounded-2xl p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 hover:border-bronze/60 hover:-translate-y-1 hover:shadow-xl group relative" data-category="${post.categoriaArticulo ? post.categoriaArticulo.toLowerCase() : ''}">
-          <a href="blog-template.html?slug=${post.slug}" class="absolute inset-0 z-20"><span class="sr-only">Leer ${post.tituloarticulo}</span></a>
-          <div>
-            <div class="flex items-center justify-between mb-6 relative z-10">
-              <span class="font-sans text-[0.7rem] font-semibold uppercase tracking-wider text-bronze">${post.categoriaArticulo || 'General'}</span>
-              <span class="font-sans text-[0.75rem] text-cream/50">${post.tiempoDeLecturaArticulo || '5'} min</span>
+      blogGrid.innerHTML = '';
+
+      if (posts.length === 0) {
+        blogGrid.innerHTML = `
+          <div class="col-span-full text-center text-cream/60 py-16">
+            <p class="font-sans text-[1rem]">No se encontraron artículos que coincidan con tu búsqueda.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      posts.forEach(post => {
+        const categorySlug = post.categoria ? post.categoria.toLowerCase() : 'general';
+        const articleId = post.id || '';
+
+        const article = `
+          <article class="blog-card bg-[#1A1010] border border-bronze/20 rounded-2xl p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 hover:border-bronze/60 hover:-translate-y-1 hover:shadow-xl group relative" data-category="${categorySlug}">
+            <a href="blog-template.html?id=${articleId}" class="absolute inset-0 z-20"><span class="sr-only">Leer ${post.titulo || 'artículo'}</span></a>
+            <div>
+              ${post.imagenPrincipal?.url ? `
+                <div class="overflow-hidden rounded-xl mb-5 aspect-video border border-bronze/10">
+                  <img src="${post.imagenPrincipal.url}" alt="${post.titulo || 'Imagen del artículo'}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+              ` : ''}
+              <div class="flex items-center justify-between mb-4 relative z-10">
+                <span class="font-sans text-[0.7rem] font-semibold uppercase tracking-wider text-bronze">${post.categoria || 'General'}</span>
+                <span class="font-sans text-[0.75rem] text-cream/50">${post.tiempoDeLectura || '5'} min</span>
+              </div>
+              <h3 class="font-sans text-[1.25rem] lg:text-[1.5rem] font-bold text-cream leading-[1.3] mb-3 relative z-10">${post.titulo || 'Sin título'}</h3>
+              <p class="font-sans text-[0.95rem] text-cream/70 leading-[1.6] line-clamp-3 relative z-10">
+                ${post.parrafoLead || ''}
+              </p>
             </div>
-            <h3 class="font-sans text-[1.25rem] lg:text-[1.5rem] font-bold text-cream leading-[1.3] mb-3 relative z-10">${post.tituloarticulo}</h3>
-            <p class="font-sans text-[0.95rem] text-cream/70 leading-[1.6] line-clamp-3 relative z-10">
-              ${post.parrafoLeadArticulo}
-            </p>
-          </div>
-          <div class="mt-8 relative z-10">
-            <span class="link-reveal inline-flex items-center font-sans text-[0.875rem] font-medium text-cream">
-              Leer artículo <span class="icon-arrow ml-1 text-bronze">↗</span>
-            </span>
-          </div>
-        </article>
-      `;
-      blogGrid.innerHTML += article;
+            <div class="mt-8 relative z-10">
+              <span class="link-reveal inline-flex items-center font-sans text-[0.875rem] font-medium text-cream group-hover:text-bronze transition-colors">
+                Leer artículo <span class="icon-arrow ml-1 text-bronze">↗</span>
+              </span>
+            </div>
+          </article>
+        `;
+        blogGrid.innerHTML += article;
+      });
+    }
+
+    function filterAndRender() {
+      const filtered = allPosts.filter(post => {
+        const cat = (post.categoria || '').toLowerCase();
+        const matchesCategory = currentCategory === 'all' || cat.includes(currentCategory);
+        
+        const term = currentSearchTerm.toLowerCase();
+        const matchesSearch = !term || 
+          (post.titulo && post.titulo.toLowerCase().includes(term)) ||
+          (post.parrafoLead && post.parrafoLead.toLowerCase().includes(term));
+
+        return matchesCategory && matchesSearch;
+      });
+
+      renderPosts(filtered);
+    }
+
+    // Escuchar entrada de búsqueda
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearchTerm = e.target.value.trim();
+        filterAndRender();
+      });
+    }
+
+    // Escuchar cambio de categorías y actualizar UI de botones
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.setAttribute('aria-pressed', 'false');
+          b.className = 'filter-btn border border-bronze/30 bg-transparent text-cream/70 hover:text-cream hover:border-bronze px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200';
+        });
+
+        btn.setAttribute('aria-pressed', 'true');
+        btn.className = 'filter-btn bg-bronze text-bean px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200';
+
+        currentCategory = btn.dataset.category;
+        filterAndRender();
+      });
     });
-  }
-  
-    // Ejecutar la conexión apenas cargue la página
+
     fetchPosts();
   </script>
-</html>
+  </html>
