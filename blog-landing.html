@@ -280,7 +280,7 @@
           <img src="public/assets/logos/Logo-Imagotipo-Header.svg" alt="Sombra & Fuego — Café de Origen" class="h-10 w-auto object-contain" />
         </a>
         <nav aria-label="Navegación principal" class="flex space-x-8 items-center">
-          <a href="index.html" class="nav-link is-active">Inicio</a>
+          <a href="index.html" class="nav-link">Inicio</a>
           <div class="relative group">
             <a href="index.html#metodos-preparacion" class="nav-link inline-flex items-center gap-1.5 py-1">
               <span>Cómo prepararlo</span>
@@ -294,7 +294,7 @@
               <a class="submenu-item block px-4 py-2 text-sm text-[#EFD9BE] hover:bg-[#D39858]/10 hover:text-[#D39858] rounded-lg transition-colors" href="espresso.html">Espresso</a>
             </div>
           </div>
-          <a href="blog-landing.html" class="nav-link">Blog</a>
+          <a href="blog-landing.html" class="nav-link is-active">Blog</a>
         </nav>
         <a href="index.html#preventa" class="btn-primary">
           <span>Comprar Producto</span>
@@ -347,50 +347,32 @@
     <!-- ========================================== -->
     <!-- 3. BLOQUE PRINCIPAL DEL BLOG               -->
     <!-- ========================================== -->
-    <main id="main-content" class="flex-1 bg-bean pt-12 md:pt-20 pb-24">
-      <section class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 pt-10 pb-16 text-center">
-        <header class="max-w-3xl mx-auto">
-          <span class="font-sans text-[0.7rem] md:text-[0.75rem] font-semibold uppercase tracking-wider text-bronze mb-4 block">
+    <main id="main-content" class="flex-1 bg-bean pt-10 pb-24">
+      
+      <!-- HERO SECTION EDITORIAL (Título + Historia Destacada) -->
+      <section class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 pt-6 pb-12">
+        <header class="max-w-3xl mx-auto text-center mb-12">
+          <span class="font-sans text-[0.7rem] md:text-[0.75rem] font-semibold uppercase tracking-wider text-bronze mb-3 block">
             Bitácora & Cultura
           </span>
-          <h1 class="font-serif text-[2.5rem] md:text-[3.5rem] font-bold text-cream leading-[1.1] mb-6">
+          <h1 class="font-serif text-[2.5rem] md:text-[3.75rem] font-bold text-cream leading-[1.1] mb-5">
             Historias desde la sombra y el fuego.
           </h1>
-          <p class="font-sans text-[1rem] md:text-[1.125rem] font-normal text-cream/80 leading-relaxed mb-10">
+          <p class="font-sans text-[1rem] md:text-[1.125rem] font-normal text-cream/80 leading-relaxed">
             Explora nuestros artículos sobre botánica de alta montaña, ciencia del tueste artesanal y guías de preparación diseñadas para elevar tu ritual diario.
           </p>
         </header>
 
-        <!-- Barra de Búsqueda -->
-        <div class="relative max-w-xl mx-auto mb-10 group">
-          <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-            <svg class="w-5 h-5 text-bronze/60 group-focus-within:text-bronze transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-          <input id="blog-search-input" type="search" placeholder="Buscar historias, métodos, botánica..." class="w-full bg-[#1A1010] border border-bronze/30 focus:border-bronze focus:ring-1 focus:ring-bronze text-cream rounded-full pl-12 pr-6 py-3.5 placeholder:text-cream/40 transition-all duration-300 outline-none font-sans text-[0.95rem] shadow-inner">
-        </div>
-
-        <!-- Filtros de Categorías -->
-        <div id="blog-category-filters" class="flex flex-wrap justify-center gap-3">
-          <button data-category="all" aria-pressed="true" class="filter-btn bg-bronze text-bean px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Todos</button>
-          <button data-category="origen" aria-pressed="false" class="filter-btn border border-bronze/30 bg-transparent text-cream/70 hover:text-cream hover:border-bronze px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Origen & Altura</button>
-          <button data-category="tueste" aria-pressed="false" class="filter-btn border border-bronze/30 bg-transparent text-cream/70 hover:text-cream hover:border-bronze px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Tueste Artesanal</button>
-          <button data-category="metodos" aria-pressed="false" class="filter-btn border border-bronze/30 bg-transparent text-cream/70 hover:text-cream hover:border-bronze px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Métodos de extracción</button>
-        </div>
-      </section>
-
-      <!-- ARTÍCULO DESTACADO -->
-      <section class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 mb-20">
+        <!-- ARTÍCULO DESTACADO EDITORIAL -->
         <article class="grid grid-cols-1 lg:grid-cols-2 rounded-[2rem] overflow-hidden border border-bronze/20 bg-[#1A1010] group transition-all duration-500 hover:border-bronze/40 hover:shadow-2xl hover:shadow-bronze/5" data-category="origen">
           <div class="relative aspect-video lg:aspect-auto overflow-hidden">
-            <img src="public/assets/images/blog/blog-origen.jpg" alt="Cafetales bajo sombra en la Sierra Nevada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" onerror="this.src='https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=1600'">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1600" alt="Cafetales bajo sombra en la Sierra Nevada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out">
             <div class="absolute top-5 left-5 lg:hidden bg-bean/80 backdrop-blur-sm border border-bronze/30 px-3 py-1.5 rounded-full">
               <span class="font-sans text-[0.65rem] font-semibold uppercase tracking-wider text-bronze">Origen & Altura</span>
             </div>
           </div>
-          <div class="p-8 md:p-10 lg:p-16 flex flex-col justify-center relative">
-            <div class="hidden lg:flex items-center gap-3 mb-6">
+          <div class="p-8 md:p-10 lg:p-14 flex flex-col justify-center relative">
+            <div class="hidden lg:flex items-center gap-3 mb-5">
               <span class="font-sans text-[0.75rem] font-semibold uppercase tracking-wider text-bronze">Origen & Altura</span>
               <span class="w-1.5 h-1.5 rounded-full bg-bronze/50"></span>
               <span class="font-sans text-[0.75rem] text-cream/60 flex items-center gap-1.5">
@@ -398,7 +380,7 @@
                 5 min de lectura
               </span>
             </div>
-            <h2 class="font-serif text-[1.75rem] md:text-[2.25rem] lg:text-[2.5rem] font-medium text-cream leading-[1.2] mb-5">
+            <h2 class="font-serif text-[1.75rem] md:text-[2.25rem] font-medium text-cream leading-[1.2] mb-4">
               <a href="blog-template.html" class="hover:text-bronze transition-colors duration-300">Sombra & Altura: Por qué 1.950 msnm importan en tu taza</a>
             </h2>
             <p class="font-sans text-[0.95rem] md:text-[1rem] text-cream/80 leading-[1.6] mb-8 line-clamp-3">
@@ -407,7 +389,7 @@
             <div class="mt-auto flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full border border-bronze/30 overflow-hidden">
-                  <img src="public/assets/images/origen/caficultor-1.jpg" alt="Don Mateo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=100'">
+                  <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=100" alt="Don Mateo" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col">
                   <span class="font-sans text-[0.85rem] font-semibold text-cream">Don Mateo</span>
@@ -422,33 +404,55 @@
         </article>
       </section>
 
-      <!-- GRID DE ARTÍCULOS -->
-      <section class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+      <!-- SECCIÓN DE BUSCADOR, FILTROS Y GRILLA DE HYGRAPH -->
+      <section class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 pt-4">
+        
+        <!-- Controles pegados a la grilla dinámicas -->
+        <div class="mb-12 text-center border-t border-bronze/10 pt-10">
+          <div class="relative max-w-xl mx-auto mb-8 group">
+            <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+              <svg class="w-5 h-5 text-bronze/60 group-focus-within:text-bronze transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <input id="blog-search-input" type="search" placeholder="Buscar historias, métodos, botánica..." class="w-full bg-[#1A1010] border border-bronze/30 focus:border-bronze focus:ring-1 focus:ring-bronze text-cream rounded-full pl-12 pr-6 py-3.5 placeholder:text-cream/40 transition-all duration-300 outline-none font-sans text-[0.95rem] shadow-inner">
+          </div>
+
+          <div id="blog-category-filters" class="flex flex-wrap justify-center gap-3">
+            <button data-category="all" aria-pressed="true" class="filter-btn bg-bronze text-bean px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Todos</button>
+            <button data-category="origen" aria-pressed="false" class="filter-btn border border-bronze/30 bg-transparent text-cream/70 hover:text-cream hover:border-bronze px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Origen & Altura</button>
+            <button data-category="tueste" aria-pressed="false" class="filter-btn border border-bronze/30 bg-transparent text-cream/70 hover:text-cream hover:border-bronze px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Tueste Artesanal</button>
+            <button data-category="metodos" aria-pressed="false" class="filter-btn border border-bronze/30 bg-transparent text-cream/70 hover:text-cream hover:border-bronze px-5 py-2 rounded-full text-[0.75rem] font-semibold tracking-wider uppercase transition-all duration-200">Métodos de extracción</button>
+          </div>
+        </div>
+
+        <!-- GRID DE ARTÍCULOS DINÁMICOS DE HYGRAPH -->
         <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
   
         </div>
-          <!-- BLOQUE DE SUSCRIPCIÓN -->
-          <article class="col-span-1 md:col-span-2 lg:col-span-3 bg-bordeaux rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 border border-bronze/30 shadow-2xl relative overflow-hidden mt-6">
-            <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-bean rounded-full opacity-10 blur-3xl pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-48 h-48 bg-bronze rounded-full opacity-10 blur-3xl pointer-events-none"></div>
-            
-            <div class="relative z-10 flex-1 text-center md:text-left">
-              <h3 class="font-serif text-[1.75rem] md:text-[2.25rem] lg:text-[2.5rem] font-bold text-cream leading-[1.2] mb-4">¿Quieres profundizar en el arte del café?</h3>
-              <p class="font-sans text-[0.95rem] md:text-[1.05rem] text-cream/80 leading-relaxed max-w-xl mx-auto md:mx-0">
-                Únete a nuestra lista exclusiva. Recibe notificaciones prioritarias de nuevas ediciones limitadas, guías de cata avanzadas y notas directas desde la finca en la Sierra Nevada.
-              </p>
-            </div>
 
-            <div class="relative z-10 shrink-0 w-full md:w-auto">
-              <form id="newsletter-form" action="#" method="POST" class="flex flex-col gap-3">
-                <div class="flex flex-col sm:flex-row gap-3">
-                  <input type="email" required placeholder="Tu correo electrónico" class="w-full sm:w-64 bg-bean/50 border border-cream/20 focus:border-cream focus:ring-1 focus:ring-cream text-cream rounded-full px-6 py-3.5 placeholder:text-cream/40 transition-colors outline-none font-sans text-sm">
-                  <button type="submit" class="btn-primary w-full sm:w-auto bg-bean text-cream border-cream hover:bg-cream hover:text-bean whitespace-nowrap justify-center h-[50px] shadow-lg">Suscribirme</button>
-                </div>
-                <p class="font-sans text-xs text-cream/50 text-center md:text-left pl-2 mt-1">Sin spam. Solo cultura de café puro.</p>
-              </form>
-            </div>
-          </article>
+        <!-- BLOQUE DE SUSCRIPCIÓN -->
+        <article class="col-span-1 md:col-span-2 lg:col-span-3 bg-bordeaux rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 border border-bronze/30 shadow-2xl relative overflow-hidden mt-16">
+          <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-bean rounded-full opacity-10 blur-3xl pointer-events-none"></div>
+          <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-48 h-48 bg-bronze rounded-full opacity-10 blur-3xl pointer-events-none"></div>
+          
+          <div class="relative z-10 flex-1 text-center md:text-left">
+            <h3 class="font-serif text-[1.75rem] md:text-[2.25rem] lg:text-[2.5rem] font-bold text-cream leading-[1.2] mb-4">¿Quieres profundizar en el arte del café?</h3>
+            <p class="font-sans text-[0.95rem] md:text-[1.05rem] text-cream/80 leading-relaxed max-w-xl mx-auto md:mx-0">
+              Únete a nuestra lista exclusiva. Recibe notificaciones prioritarias de nuevas ediciones limitadas, guías de cata avanzadas y notas directas desde la finca en la Sierra Nevada.
+            </p>
+          </div>
+
+          <div class="relative z-10 shrink-0 w-full md:w-auto">
+            <form id="newsletter-form" action="#" method="POST" class="flex flex-col gap-3">
+              <div class="flex flex-col sm:flex-row gap-3">
+                <input type="email" required placeholder="Tu correo electrónico" class="w-full sm:w-64 bg-bean/50 border border-cream/20 focus:border-cream focus:ring-1 focus:ring-cream text-cream rounded-full px-6 py-3.5 placeholder:text-cream/40 transition-colors outline-none font-sans text-sm">
+                <button type="submit" class="btn-primary w-full sm:w-auto bg-bean text-cream border-cream hover:bg-cream hover:text-bean whitespace-nowrap justify-center h-[50px] shadow-lg">Suscribirme</button>
+              </div>
+              <p class="font-sans text-xs text-cream/50 text-center md:text-left pl-2 mt-1">Sin spam. Solo cultura de café puro.</p>
+            </form>
+          </div>
+        </article>
       </section>
     </main>
 
@@ -512,7 +516,7 @@
         function setOpen(open) {
           menu.classList.toggle("hidden", !open);
           iconOpen.classList.toggle("hidden", open);
-          iconClose.classList.toggle("hidden", !open);
+          iconClose.classList.toggle("hidden", open);
           document.body.classList.toggle("overflow-hidden", open);
           toggle.setAttribute("aria-expanded", String(open));
           toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
@@ -534,7 +538,9 @@
       })();
     </script>
   </body>
-<script>
+
+  <!-- Script Hygraph API -->
+  <script>
     const HYGRAPH_ENDPOINT = 'https://us-west-2.cdn.hygraph.com/content/cmu4momi703vv06uzgrpbqxkf/master';
     const blogGrid = document.getElementById('blog-grid');
     const searchInput = document.getElementById('blog-search-input');
@@ -544,9 +550,10 @@
     let currentCategory = 'all';
     let currentSearchTerm = '';
 
+    // Consulta con límite ampliado a 50 artículos
     const query = `
     {
-      articulos {
+      articulos(first: 50) {
         id
         titulo
         categoria
@@ -668,4 +675,4 @@
 
     fetchPosts();
   </script>
-  </html>
+</html>
