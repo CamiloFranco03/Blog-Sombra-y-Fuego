@@ -542,13 +542,22 @@
     // 2. Esta es la consulta GraphQL que pide los datos al CMS
     const query = `
     {
-      articulos {
+      articulo {
         id
-        tituloarticulo
-        slug
-        categoriaArticulo
-        tiempoDeLecturaArticulo
-        parrafoLeadArticulo
+        titulo
+        categoria
+        tiempoDeLectura
+        parrafoLead
+        cuerpoDelTexto
+        nombreDelAutor
+        biografiaDelAutor
+        fotoDelAutor {
+        url
+      }
+        imagenPrincipal {
+        url
+      }
+      pieDeFoto
       }
     }
   `;
