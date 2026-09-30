@@ -730,188 +730,102 @@
         </div>
       </section>
 
-      <!-- BLOG: HISTORIAS DESDE LA SOMBRA (HYGRAPH) -->
-      <section id="blog" class="relative bg-[#150C0C] text-[#EFD9BE] py-16 lg:py-0 blog-scroll-wrapper lg:h-[300vh]">
+      <!-- GALERÍA VISUAL Y LLEGADA AL BLOG (SCROLL HORIZONTAL MANDATORIO) -->
+      <section id="blog" class="relative bg-[#150C0C] text-[#EFD9BE] py-16 lg:py-0 blog-scroll-wrapper lg:h-[280vh]">
         <div class="lg:sticky lg:top-0 lg:h-screen overflow-hidden flex flex-col justify-center">
           
-          <header class="text-center max-w-2xl mx-auto px-4 mb-10 lg:mb-16 shrink-0 mt-8 lg:mt-0 relative z-10">
+          <!-- CABECERA DE LA SECCIÓN & BOTÓN BLOG -->
+          <header class="text-center max-w-2xl mx-auto px-4 mb-8 lg:mb-12 shrink-0 mt-8 lg:mt-0 relative z-10">
             <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-3">
-              BITÁCORA & CULTURA
+              RITUAL &amp; GALERÍA
             </span>
             <h2 class="font-serif text-3xl lg:text-4xl font-medium text-[#EFD9BE] mb-4 leading-[1.2]">
-              Historias desde la sombra.
+              El ritual detrás de la taza.
             </h2>
-            <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed max-w-xl mx-auto">
-              Explora nuestros artículos sobre botánica, tueste artesanal y guías de preparación diseñadas para elevar tu ritual diario.
+            <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed max-w-xl mx-auto mb-6">
+              Cada gota guarda la esencia de la Sierra Nevada, desde las manos de los caficultores hasta la calidez del tueste y la taza perfecta.
             </p>
+            <a href="blog-landing.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#EFD9BE] bg-[#150C0C] text-[#EFD9BE] hover:bg-[#EFD9BE] hover:text-[#150C0C] transition-all duration-300 font-medium text-sm group/btn hover:-translate-y-0.5">
+              <span>Explorar el Blog</span>
+              <span class="inline-block transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">↗</span>
+            </a>
           </header>
 
-          <!-- TRACK DE TARJETAS -->
+          <!-- CARRUSEL DE FOTOGRAFÍAS A TRAVÉS DE SCROLL -->
           <div class="blog-track flex gap-4 lg:gap-8 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-6 px-4 lg:px-12 w-full lg:w-max items-center flex-nowrap no-scrollbar transition-transform ease-out duration-100">
 
-            <!-- TARJETA 1 -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group bg-[#150C0C] border border-[#D39858]/20 lg:translate-y-0 snap-center shadow-lg" data-cms-bind="blog-post">
-              <a href="articulo.html?slug=mito-molienda-perfecta" class="absolute inset-0 z-20" aria-label="Leer artículo El mito de la molienda perfecta"><span class="sr-only">Leer artículo</span></a>
-              <div class="relative z-10">
-                <div class="w-10 h-10 flex items-center justify-center bg-[#D39858]/10 rounded-xl mb-6">
-                  <img src="public/assets/images/iconos/icono-blog-1.svg" alt="Icono Molienda" class="w-6 h-6 object-contain">
-                </div>
-                <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-3">El mito de la molienda perfecta</h3>
-                <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-4">
-                  Cómo el tamaño y la uniformidad de la partícula alteran la tasa de extracción en filtrados.
-                </p>
-              </div>
-              <div class="relative z-10 flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE] mt-4">
-                Leer artículo 
-                <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
+            <!-- FOTO 1: LA SIERRA / ORIGEN -->
+            <article class="w-[300px] lg:w-[420px] h-[380px] lg:h-[450px] rounded-2xl shrink-0 relative overflow-hidden group snap-center shadow-2xl border border-[#D39858]/20">
+              <img src="public/assets/images/blog/blog-origen.png" alt="Sierra Nevada de Santa Marta" class="object-cover w-full h-full absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C]/90 via-[#150C0C]/30 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 z-10">
+                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">ORIGEN</span>
+                <h3 class="font-serif text-xl font-bold text-[#EFD9BE]">La Sierra Nevada</h3>
+                <p class="font-sans text-xs text-[#EFD9BE]/80 mt-1">1.950 msnm esculpidos por el clima de alta montaña.</p>
               </div>
             </article>
 
-            <!-- TARJETA 2 -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-end shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group lg:translate-y-8 snap-center shadow-lg" data-cms-bind="blog-post">
-              <a href="articulo.html?slug=sombra-y-altura" class="absolute inset-0 z-20" aria-label="Leer artículo Sombra & Altura"><span class="sr-only">Leer artículo</span></a>
-              <img src="public/assets/images/blog/blog-origen.png" alt="Finca de café" class="object-cover w-full h-full absolute inset-0 z-0 group-hover:scale-105 transition-transform duration-700 ease-out">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C] via-[#150C0C]/70 to-transparent z-0"></div>
-              <div class="relative z-10 pointer-events-none">
-                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-2">ORIGEN & ALTURA</span>
-                <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-2">Sombra & Altura: Por qué 1.950 msnm importan</h3>
-                <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-3 mb-4">
-                  La relación directa entre la menor temperatura nocturna y la densidad del grano.
-                </p>
-                <div class="flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE]">
-                  Leer artículo 
-                  <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
-                </div>
+            <!-- FOTO 2: LAS MANOS DE LOS CAFICULTORES -->
+            <article class="w-[300px] lg:w-[420px] h-[380px] lg:h-[450px] rounded-2xl shrink-0 relative overflow-hidden group snap-center shadow-2xl border border-[#D39858]/20 lg:translate-y-6">
+              <img src="public/assets/images/blog/hero-blog.png" alt="Manos cosechando café" class="object-cover w-full h-full absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C]/90 via-[#150C0C]/30 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 z-10">
+                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">TRADICIÓN</span>
+                <h3 class="font-serif text-xl font-bold text-[#EFD9BE]">Manos Caficultoras</h3>
+                <p class="font-sans text-xs text-[#EFD9BE]/80 mt-1">Selección manual del grano maduro en su punto óptimo.</p>
               </div>
             </article>
 
-            <!-- TARJETA 3 -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group bg-[#D39858] lg:translate-y-0 snap-center shadow-lg" data-cms-bind="blog-post">
-              <a href="articulo.html?slug=guia-de-agua" class="absolute inset-0 z-20" aria-label="Leer artículo Guía de agua"><span class="sr-only">Leer artículo</span></a>
-              <div class="relative z-10">
-                <div class="w-10 h-10 flex items-center justify-center bg-[#150C0C]/10 rounded-xl mb-6">
-                  <img src="public/assets/images/iconos/icono-blog-2.svg" alt="Icono Agua" class="w-6 h-6 object-contain">
-                </div>
-                <h3 class="font-sans font-bold text-xl text-[#150C0C] leading-[1.3] mb-3">Guía de agua: El 98% de tu taza</h3>
-                <p class="font-sans text-[0.95rem] lg:text-base text-[#150C0C]/80 leading-relaxed line-clamp-4">
-                  Mineralización, pH y temperatura ideal para no aplastar los compuestos aromáticos.
-                </p>
-              </div>
-              <div class="relative z-10 flex items-center font-sans font-semibold text-[0.95rem] text-[#150C0C] mt-4">
-                Leer artículo 
-                <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            <!-- FOTO 3: EL TUESTE ARTESANAL -->
+            <article class="w-[300px] lg:w-[420px] h-[380px] lg:h-[450px] rounded-2xl shrink-0 relative overflow-hidden group snap-center shadow-2xl border border-[#D39858]/20">
+              <img src="public/assets/images/blog/blog-tueste.png" alt="Granos en tostadora artesanal" class="object-cover w-full h-full absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C]/90 via-[#150C0C]/30 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 z-10">
+                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">EL FUEGO</span>
+                <h3 class="font-serif text-xl font-bold text-[#EFD9BE]">Curva de Tueste</h3>
+                <p class="font-sans text-[#EFD9BE]/80 text-xs mt-1">El desarrollo térmico ideal para preservar los frutos rojos.</p>
               </div>
             </article>
 
-            <!-- TARJETA 4 -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-end shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group lg:translate-y-8 snap-center shadow-lg" data-cms-bind="blog-post">
-              <a href="articulo.html?slug=curva-de-tueste" class="absolute inset-0 z-20" aria-label="Leer artículo La curva de tueste Lote 01"><span class="sr-only">Leer artículo</span></a>
-              <img src="public/assets/images/blog/blog-tueste.png" alt="Granos de café tostándose" class="object-cover w-full h-full absolute inset-0 z-0 group-hover:scale-105 transition-transform duration-700 ease-out">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C] via-[#150C0C]/70 to-transparent z-0"></div>
-              <div class="relative z-10 pointer-events-none">
-                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-2">TUESTE ARTESANAL</span>
-                <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-2">La curva de tueste Lote 01</h3>
-                <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-3 mb-4">
-                  Un vistazo al desarrollo térmico que preserva las notas a fruto rojo sin desarrollar amargura.
-                </p>
-                <div class="flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE]">
-                  Leer artículo 
-                  <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
-                </div>
+            <!-- FOTO 4: RITUAL DE EXTRACCIÓN Y PRENSA -->
+            <article class="w-[300px] lg:w-[420px] h-[380px] lg:h-[450px] rounded-2xl shrink-0 relative overflow-hidden group snap-center shadow-2xl border border-[#D39858]/20 lg:translate-y-6">
+              <img src="public/assets/images/blog/blog-prensa.png" alt="Prensa francesa y café servido" class="object-cover w-full h-full absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C]/90 via-[#150C0C]/30 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 z-10">
+                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">EXTRACCIÓN</span>
+                <h3 class="font-serif text-xl font-bold text-[#EFD9BE]">El Método Perfecto</h3>
+                <p class="font-sans text-[#EFD9BE]/80 text-xs mt-1">Prensa francesa para resaltar el cuerpo denso y la panela.</p>
               </div>
             </article>
 
-            <!-- TARJETA 5 -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group bg-[#150C0C] border border-[#D39858]/20 lg:translate-y-0 snap-center shadow-lg" data-cms-bind="blog-post">
-              <a href="articulo.html?slug=maceracion-anaerobica" class="absolute inset-0 z-20" aria-label="Leer artículo Maceración anaeróbica explicada"><span class="sr-only">Leer artículo</span></a>
-              <div class="relative z-10">
-                <div class="w-10 h-10 flex items-center justify-center bg-[#D39858]/10 rounded-xl mb-6">
-                  <img src="public/assets/images/iconos/icono-blog-3.svg" alt="Icono Maceración" class="w-6 h-6 object-contain">
-                </div>
-                <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-3">Maceración anaeróbica explicada</h3>
-                <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-4">
-                  Qué sucede químicamente durante las 72 horas de fermentación en tanque sellado.
-                </p>
-              </div>
-              <div class="relative z-10 flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE] mt-4">
-                Leer artículo 
-                <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
+            <!-- FOTO 5: TRABAJO EN EL CAMPO (ASSETS NUEVO) -->
+            <article class="w-[300px] lg:w-[420px] h-[380px] lg:h-[450px] rounded-2xl shrink-0 relative overflow-hidden group snap-center shadow-2xl border border-[#D39858]/20">
+              <img src="public/assets/images/blog/blog-manos.png" alt="Trabajo artesanal en la finca" class="object-cover w-full h-full absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C]/90 via-[#150C0C]/30 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 z-10">
+                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">COMUNIDAD</span>
+                <h3 class="font-serif text-xl font-bold text-[#EFD9BE]">Artesanos de la Sierra</h3>
+                <p class="font-sans text-[#EFD9BE]/80 text-xs mt-1">Dedicatoria y vida dedicada a la preservación del cultivo.</p>
               </div>
             </article>
 
-            <!-- TARJETA 6 -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-end shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group lg:translate-y-8 snap-center shadow-lg" data-cms-bind="blog-post">
-              <a href="articulo.html?slug=prensa-francesa-sin-sedimentos" class="absolute inset-0 z-20" aria-label="Leer artículo Prensa Francesa sin sedimentos"><span class="sr-only">Leer artículo</span></a>
-              <img src="public/assets/images/blog/blog-prensa.png" alt="Prensa Francesa" class="object-cover w-full h-full absolute inset-0 z-0 group-hover:scale-105 transition-transform duration-700 ease-out">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C] via-[#150C0C]/70 to-transparent z-0"></div>
-              <div class="relative z-10 pointer-events-none">
-                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-2">MÉTODOS & RITUALES</span>
-                <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-2">Prensa Francesa sin sedimentos</h3>
-                <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-3 mb-4">
-                  El método de decantado para obtener una taza limpia con todo el cuerpo del émbolo.
-                </p>
-                <div class="flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE]">
-                  Leer artículo 
-                  <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
-                </div>
+            <!-- FOTO 6: LA TAZA HUMEANTE (ASSETS NUEVO) -->
+            <article class="w-[300px] lg:w-[420px] h-[380px] lg:h-[450px] rounded-2xl shrink-0 relative overflow-hidden group snap-center shadow-2xl border border-[#D39858]/20 lg:translate-y-6">
+              <img src="public/assets/images/blog/blog-taza.png" alt="Taza humeante de café" class="object-cover w-full h-full absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C]/90 via-[#150C0C]/30 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 z-10">
+                <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-1">LA EXPERIENCIA</span>
+                <h3 class="font-serif text-xl font-bold text-[#EFD9BE]">La Taza Humante</h3>
+                <p class="font-sans text-[#EFD9BE]/80 text-xs mt-1">El resultado final de una tierra llena de misticismo.</p>
               </div>
-            </article>
-
-            <!-- TARJETA 7 -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group bg-[#150C0C] border border-[#D39858]/20 lg:translate-y-0 snap-center shadow-lg" data-cms-bind="blog-post">
-              <a href="articulo.html?slug=conservacion-oxigeno-y-luz" class="absolute inset-0 z-20" aria-label="Leer artículo Conservación: Oxígeno y luz"><span class="sr-only">Leer artículo</span></a>
-              <div class="relative z-10">
-                <div class="w-10 h-10 flex items-center justify-center bg-[#D39858]/10 rounded-xl mb-6">
-                  <img src="public/assets/images/iconos/icono-blog-4.svg" alt="Icono Conservación" class="w-6 h-6 object-contain">
-                </div>
-                <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-3">Conservación: Oxígeno y luz</h3>
-                <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-4">
-                  Por qué la válvula unidireccional es tu mejor aliada contra la oxidación del grano.
-                </p>
-              </div>
-              <div class="relative z-10 flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE] mt-4">
-                Leer artículo 
-                <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
-              </div>
-            </article>
-
-            <!-- TARJETA 8 (Cierre) -->
-            <article class="w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-center items-center text-center shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden bg-[#491D24] border border-[#D39858]/40 lg:translate-y-8 snap-center shadow-lg">
-              <h3 class="font-sans font-bold text-xl lg:text-2xl text-[#EFD9BE] leading-[1.3] mb-4">
-                ¿Quieres profundizar en el arte del café?
-              </h3>
-              <p class="font-sans text-[0.95rem] text-[#EFD9BE]/80 leading-relaxed mb-8 px-2">
-                Accede a nuestra biblioteca completa de artículos, recetas y guías de cata.
-              </p>
-              <a href="blog-landing.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#150C0C] border border-[#EFD9BE] text-[#EFD9BE] hover:bg-[#EFD9BE] hover:text-[#150C0C] transition-all duration-300 font-medium text-sm group/btn shadow-none hover:-translate-y-0.5 relative z-20">
-                Explorar todo el Blog 
-                <span class="inline-block transition-transform duration-200 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1">↗</span>
-              </a>
             </article>
 
           </div>
         </div>
       </section>
 
-      <!-- SCRIPT DE DESPLAZAMIENTO HORIZONTAL Y CONEXIÓN HYGRAPH CMS -->
+      <!-- SCRIPT QUE MANTIENE EL SCROLL HORIZONTAL RIGUROSO -->
       <script>
-        const HYGRAPH_ENDPOINT = 'https://us-west-2.cdn.hygraph.com/content/cmu4momi703vv06uzgrpbqxkf/master';
-
-        const GET_BLOG_POSTS_QUERY = `
-          query GetHomeBlogPosts {
-            articulos(orderBy: publishedAt_DESC, first: 7) {
-              id
-              titulo
-              slug
-              categoria
-              parrafoLead
-              imagenPrincipal {
-                url
-              }
-            }
-          }
-        `;
-
         document.addEventListener('DOMContentLoaded', () => {
           const wrapper = document.querySelector('.blog-scroll-wrapper');
           const track = document.querySelector('.blog-track');
@@ -943,122 +857,6 @@
           window.addEventListener('scroll', window.calculateBlogScroll, { passive: true });
           window.addEventListener('resize', window.calculateBlogScroll, { passive: true });
           window.calculateBlogScroll();
-
-          const localIcons = [
-            'public/assets/images/iconos/icono-blog-1.svg',
-            'public/assets/images/iconos/icono-blog-2.svg',
-            'public/assets/images/iconos/icono-blog-3.svg',
-            'public/assets/images/iconos/icono-blog-4.svg'
-          ];
-
-          async function fetchHygraphPosts() {
-            if (!HYGRAPH_ENDPOINT) return;
-
-            try {
-              const response = await fetch(HYGRAPH_ENDPOINT, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ query: GET_BLOG_POSTS_QUERY })
-              });
-
-              const result = await response.json();
-
-              if (result.errors) {
-                console.error("Error en consulta Hygraph GraphQL:", result.errors);
-                return;
-              }
-
-              const posts = result?.data?.articulos || result?.data?.posts || result?.data?.articles;
-
-              if (Array.isArray(posts) && posts.length > 0) {
-                const closingCard = track.lastElementChild?.cloneNode(true);
-                track.innerHTML = '';
-
-                let iconCounter = 0;
-
-                posts.forEach((post, index) => {
-                  const article = document.createElement('article');
-
-                  const imageUrl = post.imagenPrincipal?.url || post.coverImage?.url || post.imagen?.url || post.image?.url;
-                  const titulo = post.titulo || post.title || 'Artículo sin título';
-                  const resumen = post.parrafoLead || post.excerpt || post.description || '';
-                  const categoria = post.categoria || post.category || 'BITÁCORA & CULTURA';
-                  const slug = post.slug || '';
-                  const linkUrl = slug ? `articulo.html?slug=${encodeURIComponent(slug)}` : 'blog-landing.html';
-
-                  const isStaggered = index % 2 === 1 ? 'lg:translate-y-8' : 'lg:translate-y-0';
-                  const isPlainTextCard = (index % 2 === 0);
-
-                  if (!isPlainTextCard) {
-                    article.className = `w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-end shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group ${isStaggered} snap-center shadow-lg`;
-                    article.setAttribute('data-cms-bind', 'blog-post');
-                    article.innerHTML = `
-                      <a href="${linkUrl}" class="absolute inset-0 z-20" aria-label="Leer artículo ${titulo}"><span class="sr-only">Leer artículo</span></a>
-                      <img src="${imageUrl || 'public/assets/images/blog/blog-origen.png'}" alt="${titulo}" class="object-cover w-full h-full absolute inset-0 z-0 group-hover:scale-105 transition-transform duration-700 ease-out">
-                      <div class="absolute inset-0 bg-gradient-to-t from-[#150C0C] via-[#150C0C]/70 to-transparent z-0"></div>
-                      <div class="relative z-10 pointer-events-none">
-                        <span class="font-sans text-xs font-semibold uppercase tracking-wider text-[#D39858] block mb-2">${categoria}</span>
-                        <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-2">${titulo}</h3>
-                        <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-3 mb-4">${resumen}</p>
-                        <div class="flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE]">
-                          Leer artículo <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
-                        </div>
-                      </div>
-                    `;
-                  } else {
-                    const currentIcon = localIcons[iconCounter % localIcons.length];
-                    iconCounter++;
-                    const isBronze = (index === 2);
-
-                    if (isBronze) {
-                      article.className = `w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group bg-[#D39858] ${isStaggered} snap-center shadow-lg`;
-                      article.setAttribute('data-cms-bind', 'blog-post');
-                      article.innerHTML = `
-                        <a href="${linkUrl}" class="absolute inset-0 z-20" aria-label="Leer artículo ${titulo}"><span class="sr-only">Leer artículo</span></a>
-                        <div class="relative z-10">
-                          <div class="w-10 h-10 flex items-center justify-center bg-[#150C0C]/10 rounded-xl mb-6">
-                            <img src="${currentIcon}" alt="Icono" class="w-6 h-6 object-contain">
-                          </div>
-                          <h3 class="font-sans font-bold text-xl text-[#150C0C] leading-[1.3] mb-3">${titulo}</h3>
-                          <p class="font-sans text-[0.95rem] lg:text-base text-[#150C0C]/80 leading-relaxed line-clamp-4">${resumen}</p>
-                        </div>
-                        <div class="relative z-10 flex items-center font-sans font-semibold text-[0.95rem] text-[#150C0C] mt-4">
-                          Leer artículo <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-                        </div>
-                      `;
-                    } else {
-                      article.className = `w-[280px] lg:w-[340px] h-[400px] lg:h-[420px] rounded-2xl p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all duration-300 lg:hover:-translate-y-2 relative overflow-hidden group bg-[#150C0C] border border-[#D39858]/20 ${isStaggered} snap-center shadow-lg`;
-                      article.setAttribute('data-cms-bind', 'blog-post');
-                      article.innerHTML = `
-                        <a href="${linkUrl}" class="absolute inset-0 z-20" aria-label="Leer artículo ${titulo}"><span class="sr-only">Leer artículo</span></a>
-                        <div class="relative z-10">
-                          <div class="w-10 h-10 flex items-center justify-center bg-[#D39858]/10 rounded-xl mb-6">
-                            <img src="${currentIcon}" alt="Icono" class="w-6 h-6 object-contain">
-                          </div>
-                          <h3 class="font-sans font-bold text-xl text-[#EFD9BE] leading-[1.3] mb-3">${titulo}</h3>
-                          <p class="font-sans text-[0.95rem] lg:text-base text-[#EFD9BE]/80 leading-relaxed line-clamp-4">${resumen}</p>
-                        </div>
-                        <div class="relative z-10 flex items-center font-sans font-medium text-[0.95rem] text-[#EFD9BE] mt-4">
-                          Leer artículo <span class="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-[#D39858]">↗</span>
-                        </div>
-                      `;
-                    }
-                  }
-                  track.appendChild(article);
-                });
-
-                if (closingCard) {
-                  track.appendChild(closingCard);
-                }
-
-                window.calculateBlogScroll();
-              }
-            } catch (error) {
-              console.warn("Error cargando artículos de Hygraph:", error);
-            }
-          }
-
-          fetchHygraphPosts();
         });
       </script>
 
